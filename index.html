@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Exercise 3</title>
+    <meta charset="UTF-8">
+    <title>Build a table</title>
 </head>
 <body>
-    <script language="JavaScript" type="text/javascript">
-    var result=[
+<table>
+<!-- here goes our data! -->
+</table>
+</body>
+<script language="JavaScript" type="text/javascript">
+  var result = [
         {
             "name": "Alderaan", 
             "rotation_period": "24", 
@@ -226,13 +231,33 @@
             "url": "https://swapi.co/api/planets/11/"
         }
     ]
+function generateTableHead(table, data) {
+  var thead = table.createTHead();
+  var row = thead.insertRow();
+  for (var key of data) {
+    var th = document.createElement("th");
+    var text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
 }
+function generateTable(table, data) {
+  for (var element of data) {
+    var row = table.insertRow();
+    for (key in element) {
+      var cell = row.insertCell();
+      var text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+var table = document.querySelector("table");
+var data = Object.keys(result[0]);
 </script>
-    <center>
+<center>
         <h1>Daftar Planet</h1>
-        for(i=0; i>result.length; i++){
-
-        }
-    </center>
+        <script>generateTableHead(table, data);
+        generateTable(table, result);</script>
+        </center>
 </body>
 </html>
